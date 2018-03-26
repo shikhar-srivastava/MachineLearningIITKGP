@@ -1,0 +1,225 @@
+
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta name="theme-color" content="#5e42a6">
+  <title>ML for BMI</title>
+  <link rel="icon" type="icon/ico" href="rsc/icon.ico"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css\materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css\style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css\dropify.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ML FOR BMI: INDEX PAGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~--> 
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~Created Summer 2016: By: Shikhar Srivastava~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->    
+<body>
+  <div class="navbar-fixed">
+  <nav class="blue darken-3" role="navigation">
+    <div class="row">
+      <div class="nav-wrapper container col s12">
+      <div class="nav-wrapper container col s12">
+      <a id="logo-container" href="index.html" class="brand-logo"><i class="material-icons " style="font-size: 35px">polymer</i></a>
+      </div>
+      </div>
+    </div>
+  </nav>
+  </div>
+  <div class="parallax-container valign-wrapper hero ">
+    <div class="container">
+      <div class="row center">
+        <h1 class="header center white-text">ImmunoHistochemical<br></h1>
+        <h4 class="header center white-text">Image Analysis<br><br></h3>
+        <h3 class="header center white-text">Machine Learning-based Tool<br></h3>
+      </div>
+     <div class="row center">
+        <h5 class="header col s12 light"><br><br>Scroll down</h5>
+      </div>
+      <div class="row center">
+        <span class="tcon-indicator" aria-label="scroll" aria-hidden="true">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="tcon-svgchevron" viewBox="0 0 30 36">
+            <path class="a3" d="M0,0l15,16L30,0"></path>
+            <path class="a2" d="M0,10l15,16l15-16"></path>
+            <path class="a1" d="M0,20l15,16l15-16"></path>
+          </svg>
+        </span>
+     </div>
+    <div class="parallax"><img src="rsc/ann_edit.jpeg" alt="rsc/lawn.jpg"></div>
+    </div>
+  </div>
+  <div class="section z-depth-5 white  darken-3">
+    <div class="container">
+	    <div class="row">
+	     <div class="col s12 m12">
+          <div class="icon-block">
+            <h5 class="center light">ML for BMI</h5>
+              <h2 class="center light-blue-text" ><a href="index.html" ><i class="material-icons indigo-text" style="font-size: 90px">polymer</i></a></h2>
+       		<h5 class="light" align='center'>Using <b>Machine Learning</b> to solve Bio-Medical Imaging problems<br></h5>    
+          </div>
+        </div>
+        </div>
+      
+      <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~Carousel Section Below~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->    
+    </div>
+
+  </div>
+  <div class="parallax-container valign-wrapper">
+    <div class="container">
+      <h6 class="light" align="center"><br><br>Select an <b>Image</b> to begin: </h6>
+        <div class="carousel" id="gallery">
+       
+          <!-- The new rows will be appended here....-->
+
+	     </div>
+    </div>
+    <div class="parallax"><img src="rsc/2.jpg" alt="Unsplashed background img 2"></div>
+  </div>
+                   
+
+  <div class="section z-depth-10">
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+         <h5 class="center-align light">You can upload <b>images</b> here</h5>
+          <input type="file" name="file" id="file" class="dropify" data-height="150" form="form1" data-max-file-size="3M"  multiple/>
+         <form id="form1" action="getImages" method="post" enctype="multipart/form-data">
+            <div class="input-field center-align ">
+                <input type="submit" class="btn waves-effect red" value="Submit"/>
+            </div>   
+         </form>
+
+          <p class="center-align light-blue-text"><b><br>Max. permitted size: 3 MB</b></p>
+        </div>
+      </div>
+     </div>
+  </div>
+  <div class="parallax-container valign-wrapper">
+    <div class="container">
+	     	<div class="row center">
+	        	<h5 class="header center-align light-white-text col s12">Images Selected?</h5>
+            <h5 class="header center-align blue-text col s12"></li><br><br><b>Proceed to selecting <br>ML Model</b></h5>
+	      	</div>
+    <div class="parallax"><img src="rsc/2.jpg" alt="Unsplashed background img 3"></div>
+  	</div>
+  </div>
+  <!--Footer-->
+  <footer class="page-footer red darken-1">
+    <div class="container">
+      <div class="row center">
+        <div class="col s12 ">
+           <a id="logo-container" href="index.html" class="brand-logo"><img src="rsc/logo_small.png" width="100"></a>
+          <h5 class="white-text">Machine Learning</h5>
+          <p class="grey-text text-lighten-4">Using Machine Learning models to solve problems in BioMedical Imaging</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      <a class="red-text text-lighten-3" href="index.html">Shikhar Srivastava</a> @IITKGP 2016
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="js/jquery-2.2.2.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/dropify.min.js"></script>
+  <!--Extra Scripts here-->
+  <script>
+
+  //-----------------For Dropify plugin-------------------
+    $(document).ready(function(){
+
+       var drEvent = $('.dropify').dropify({messages: {
+            'default': 'Drag and drop a file here or click',
+            'replace':'Drag and drop or click to replace',
+            'remove':'Remove',
+            'error':'Ooops, something wrong appended.'
+          }
+        });
+        drEvent.on('dropify.error.fileSize', function(event, element){
+          Materialize.toast("File size exceeded!",3000);
+        });
+     });
+
+    //------------For Modal Plugin------------------------
+
+    $(document).ready(function() {
+          $('.modal-trigger').leanModal({
+           dismissible: true,
+           opacity: .5,
+           in_duration: 200,
+           out_duration: 200,
+           starting_top: '10%'
+        }); 
+      $('.parallax').parallax();
+     
+  });
+
+  </script> 
+  <script>
+    //-----------------For fetching Images from Local Directory : /uploads------------------------
+  var strs="";
+  $(document).ready(function() {
+      var dir = "uploads/";
+      var fileExt = {};
+      fileExt[0]=".png";
+      fileExt[1]=".jpg";
+      fileExt[2]=".jpeg";
+    $.ajax({
+          url: dir,
+            success: function (data) {
+
+                $(data).find("a:contains(\"" + fileExt[0] + "\"),a:contains(\"" + fileExt[1] + "\"),a:contains(\"" + fileExt[2] + "\")").each(function () {
+                   var filename = this.href.replace(window.location.host, "").replace("http:///MachineLearningIITKGP/uploads/", "");
+                   strs=strs+"<a class=\"carousel-item\" href=\"input.html?"+filename+"\"><img class='solo' name='"+filename+"' id='hey' src=\""+dir+filename+"\"></a>";
+              
+                });
+                document.cookie = "strs="+strs+"; expires=Thu, 01 Jan 2070 00:00:00 UTC";  //Creates a cookie with Script
+              }
+          });
+
+  });
+
+//-------------Recieves Image Append script from Cookie -----------------
+  $(document).ready(function(){
+            var append_out= getCookie('strs');
+            document.cookie="strs=;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+            if(append_out.valueOf()==="".valueOf()){Materialize.toast("# No Images uploaded! ",3000);}
+            $("#gallery").append(append_out);
+           $('.carousel').carousel({dist:-30,shift:0,padding:20,time_constant:100});
+        });
+
+  //-----------------## Allowing Double-Touch action on Mobile-devices##------------------
+  $(document).ready(function(){
+  	
+
+    var tapped=false
+    $('img.solo').on('touchstart', function(e){
+
+            if(!tapped){ 
+                  tapped=setTimeout(function(){
+                  tapped=null        
+                    },300);   
+                // DO NOTHING
+              } 
+            else  //Else Double Touch action here 
+            {   
+                clearTimeout(tapped); 
+                tapped=null
+                      window.location.href = 'input.html?'+this.name; 
+            }
+     e.preventDefault()
+        
+     });
+
+  });
+
+  </script>
+  <script>
+    !function(n,r){"function"==typeof define&&define.amd?define(r):"object"==typeof exports?module.exports=r():n.transformicons=r()}(this||window,function(){"use strict";var n={},r="tcon-transform",t={transform:["click"],revert:["click"]},e=function(n){return"string"==typeof n?Array.prototype.slice.call(document.querySelectorAll(n)):"undefined"==typeof n||n instanceof Array?n:[n]},o=function(n){return"string"==typeof n?n.toLowerCase().split(" "):n},f=function(n,r,f){var c=(f?"remove":"add")+"EventListener",u=e(n),s=u.length,a={};for(var l in t)a[l]=r&&r[l]?o(r[l]):t[l];for(;s--;)for(var d in a)for(var v=a[d].length;v--;)u[s][c](a[d][v],i)},i=function(r){n.toggle(r.currentTarget)};return n.add=function(r,t){return f(r,t),n},n.remove=function(r,t){return f(r,t,!0),n},n.transform=function(t){return e(t).forEach(function(n){n.classList.add(r)}),n},n.revert=function(t){return e(t).forEach(function(n){n.classList.remove(r)}),n},n.toggle=function(t){return e(t).forEach(function(t){n[t.classList.contains(r)?"revert":"transform"](t)}),n},n});
+  </script>
+</html>
