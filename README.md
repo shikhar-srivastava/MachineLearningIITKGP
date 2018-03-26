@@ -72,10 +72,5 @@ Other kinds of models can also be added, with suitable changes to the `ExecuteSe
 
 ## Development
 
-### Todos
-
- - Write MORE Tests
- - Add Night Mode
-
 License
 ----
