@@ -18,9 +18,9 @@ To use your own version of the above dependencies other than the ones provided i
 
 ~~~~~~~ II. SETUP INSTRUCTIONS ~~~~~~~~
 
-	1. Run 'install.bat'. Download the file "deeplearning4j-examples-0.4-rc0-SNAPSHOT-bin.jar" from the link. Move it to /jars folder.
+	1. Run 'install.bat'. Extract the jars.rar files into '/jars' folder, the lib.rar and bin.rar files into 'WEB-INF/lib' and 'WEB-INF/bin' folders.
 
-	2. Ensure the application folder "MachineLearningIITKGP" is in the webapps folder of your APACHE TOMCAT server install. (Or equivalently to your local server manager's deployment folder)
+	2. Ensure the application folder "MachineLearningIITKGP" is in the webapps folder of your APACHE TOMCAT server installation. (Or equivalently to your local server manager's deployment folder)
 
 	3. Run Local Server. 
 		-On Apache Tomcat, run %CATALINA_HOME%/bin/startup.sh in the cmd prmpt. 
