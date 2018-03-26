@@ -1,15 +1,10 @@
 # Cloud-based IHC Image Analysis: ML Approach 
 
-<<<<<<< HEAD
 Description here about the Software......
  > Some more text here about the Software...
  > A little more.
  > [To be added later]
-=======
-Some text here about the Software itself......
-  - Some more
 
->>>>>>> c3210661be900eff11b47011ceff965ecf51ae04
 ## Dependencies:
 1. For compilation and execution of the Java Servlets, the following dependencies are necessary:
     - DeepLearning4Java (SNAPSHOT-bin.jar version >= 0.4-rc0)
@@ -18,11 +13,10 @@ Some text here about the Software itself......
     - OpenCV (.jar, .lib, .pdp and .dll files)
     - Weka
     - nio.jar, ajt-2.9.jar, servlet-api.jar, commons-io-2.5.jar
-<<<<<<< HEAD
 
 - Run `install.bat` to download and fetch all these dependencies (mentioned in setup) 
     - If you wish to use your own version of the above dependencies other than the ones provided in the repository, please:
-        1.  Ensure the .jar files are in the `jars` folder of the Web-App. 
+            1.  Ensure the .jar files are in the `jars` folder of the Web-App. 
 	    2. Copy the .dll files to the `WEB-INF/bin` folder and the .lib, .pdp files to the `WEB-INF/lib` folder.
 	    3. Reference the .jar files appropriately in the servlet compilation script `[compile.bat]`.
 2. Apache Tomcat Server (or an equivalent hosting server) to deploy the Web-Application.
@@ -85,5 +79,3 @@ Other kinds of models can also be added, with suitable changes to the `ExecuteSe
 
 License
 ----
-=======
->>>>>>> c3210661be900eff11b47011ceff965ecf51ae04
