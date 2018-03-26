@@ -1,47 +1,80 @@
-# Framework for Dynamic Access to Machine Learning Models
-###### This Framework provides a web-based GUI access to Dynamic pre-trained Machine learning models, for predictions based on the feature inputs, in **realtime**.
+# Cloud-based IHC Image Analysis: ML Approach 
 
-The aim behind this framework was to create an environment where a user can conveniently utilize the functionality of a Machine learning model, simply by loading and executing a pre-trained model, skipping the inconvenience of preprocessing ,training and fitting it on data.
+Description here about the Software......
+ > Some more text here about the Software...
+ > A little more.
+ > [To be added later]
+## Dependencies:
+1. For compilation and execution of the Java Servlets, the following dependencies are necessary:
+    - DeepLearning4Java (SNAPSHOT-bin.jar version >= 0.4-rc0)
+    - ND4J and CANOVA jars
+    - JavaML (>=0.1.7) jar
+    - OpenCV (.jar, .lib, .pdp and .dll files)
+    - Weka
+    - nio.jar, ajt-2.9.jar, servlet-api.jar, commons-io-2.5.jar
 
-It allows web-based access to the models, where users can simply choose a model of their liking, and proceed to enter a Comma-seperated input to obtain the model's predctions. 
+- Run `install.bat` to download and fetch all these dependencies (mentioned in setup) 
+    - If you wish to use your own version of the above dependencies other than the ones provided in the repository, please:
+        1.  Ensure the .jar files are in the `jars` folder of the Web-App. 
+	    2. Copy the .dll files to the `WEB-INF/bin` folder and the .lib, .pdp files to the `WEB-INF/lib` folder.
+	    3. Reference the .jar files appropriately in the servlet compilation script `[compile.bat]`.
+2. Apache Tomcat Server (or an equivalent hosting server) to deploy the Web-Application.
+    - The application has been tested on x64 Windows with Apache Tomcat 8.0.33/36 server.
+    - Apache Tomcat server 8.0 or later.
+3. Java Development Kit (JDK) / Java SE Runtime Environment (JRE) version 7 or better
 
-###### The focus was on making access to the models as a plug-and-play system, with a good GUI to accompany it.
+## Installation
 
-#### Functionality:
+1. Run `install.bat`
+    - Extract the jars.rar files into `/jars` folder, the lib.rar and bin.rar files into `WEB-INF/lib` and `WEB-INF/bin` folders.
+2. Ensure the application folder `/MachineLearningIITKGP` is in the webapps folder of your Apache Tomcat server installation. (Or equivalently to your local server manager's deployment folder)
+3. Install and run Local Server.
+    -   Download and Install Apache Tomcat ver 8 or later (http://tomcat.apache.org/)
+    -   On Apache Tomcat, check if `%CATALINA_HOME%` env var is set to source path of Apache Tomcat server installation [ like `C:\apache-tomcat-8.0.36`]
+4. Open your command prompt inside the `/MachineLearningIITKGP` folder, and execute:
+```sh
+%CATALINA_HOME%/bin/startup.sh 
+```
+## Servlet Compilation
 
-1. Easy access to pre-trained serialized ML models such as Random Forest, K Nearest Neighbors, Neural Networks and Support Vector           Machines over a network/Server.  
-2. The models have been currently trained on Medical Datasets for the purpose of Multiclass Classification problems and are serialized    and stored in .model files.
-3. The Framework is built such that the GUI and its functioning is independent of the underlying Machine Learning models and any            additions/updates required to the Models in the future can be done by simply replacing the orignal .model files.
+ Shutdown the server if running by running this in your command prompt:
+```sh
+%CATALINA_HOME%/bin/shutdown.sh
+```
+ - Ensure ```compile.bat``` has the correct paths for the ENV variables and the .jar dependencies.
 
-#### Implementation:
-The framework was mainly coded in Java, with some data-preprocessing done in R and Python for the Model training. 
-The trained Machine Learning models are stored as .model binary files which are accessed using ObjectInputStreams. 
+ - Run the ```compile.bat``` file. This will compile both the ```WEB-INF/classes/ExecuteServlet.java``` and ```WEB-INF/classes/getImagesServlet.java``` servlets.
 
-The trained Neural Network is stored as a .json (Network configuration) and .bin (Parameters) in model directory.
-    
-      Front-End : JavaScript, JQuery, HTML, CSS
-      Client-End : Java (Servlets)
-      Back-End : Java ML/Deeplearning 
-    
-      Libaries Used are: JavaML, Deeplearning4j, Weka
+Proceed to restart the server with ```%CATALINA_HOME%/bin/startup.sh```.
 
-#### Screenshots of the UI:
+### Machine Learning Models
 
-Here are some screenshots for reference to the functionality.
+Currently, all models trained using JavaML/DeepLearning4J/Weka/LibSVM libraries are supported. 
+- Following Machine Learning models are currently supported, with the nomenclature in the code followed as:
 
-> Index
+| Machine Learning Model | Abbrevation in Code: |
+| ------ | ------ |
+| Nearest Mean Classifier | [nmc] |
+| K Nearest Neighbors | [knn] |
+| MultiLayer Perceptron | [mlp] |
+| AutoEncoders | [aen] |
+| Linear SVM| [svm] |
+| Random Forest | [rff] |
+| Random Tree | [rnt] |
 
-![index1](https://cloud.githubusercontent.com/assets/12572543/16007486/6bef6798-3190-11e6-8a11-5432ee83b799.JPG)
+ To train and use your own Machine Learning models (from the above list):
+ 1. Pickle/serialize your trained models to their respective .bin (+ .json config) files.
+ 2. Move all .bin (+ .json) files to `'/models'` folder of the application, and rename them with the above nomenclature.
 
-> Model Select
+Other kinds of models can also be added, with suitable changes to the `ExecuteServlet.java` file.
 
-![index2](https://cloud.githubusercontent.com/assets/12572543/16007723/d0e66178-3191-11e6-8ee0-dc2715f400c1.JPG)
 
-> Enter input to Model
+## Development
 
-![inputs](https://cloud.githubusercontent.com/assets/12572543/16007727/d5e7c798-3191-11e6-88e9-0c14bbae214e.JPG)
+### Todos
 
-> Model Output prediction
+ - Write MORE Tests
+ - Add Night Mode
 
-![results](https://cloud.githubusercontent.com/assets/12572543/16007730/d9068108-3191-11e6-9789-ad8e6b3bbe39.JPG)
-
+License
+----

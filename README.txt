@@ -71,7 +71,7 @@
 ~~~~~~~~~~~~~~~~ (IV) MACHINE LEARNING MODELS ~~~~~~~~~~~~~~~~~
 
 
-	(4.1) Currently, all models traind using JavaML/DeepLearning4J/Weka/LibSVM libraries are supported.
+	(4.1) Currently, all models trained using JavaML/DeepLearning4J/Weka/LibSVM libraries are supported.
 
 	     Following Machine Learning models are currently supported, with the nomenclature followed as:
 
