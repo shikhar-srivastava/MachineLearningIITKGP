@@ -1,3 +1,26 @@
+/*
+    ==============================================================================
+                    --------- EXECUTESERVLET.JAVA---------
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+    ==============================================================================
+
+    Following nomenclature for the Machine Learning models has been followed:
+
+    "Nearest Mean Classifier"   =   nmc
+    "K Nearest Neighbors"       =   knn
+    "MultiLayer Perceptron"     =   mlp
+    "AutoEncoders"              =   aen
+    "Linear SVM"                =   svm
+    "Self Optimizing SVM"       =   sosvm
+    "Random Forest"             =   rff
+    "Random Tree"               =   rnt
+
+ */
+
 import net.sf.javaml.classification.Classifier;
 import net.sf.javaml.core.DenseInstance;
 import net.sf.javaml.core.Instance;
@@ -23,9 +46,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Created by Shikhar Srivastava
- */
 public class ExecuteServlet extends HttpServlet {
 
     static{ System.loadLibrary(Core.NATIVE_LIBRARY_NAME); }

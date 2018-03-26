@@ -1,12 +1,22 @@
-@rem ~~~~~~~ ABOUT: This batch file compiles the WEB-INF/ExecuteServlet.java and WEB-INF/getImagesServlet.java files ~~~~~~~~
-
-@rem ~~~~~~~ INSTRUCTIONS: ~~~~~~~~
-@rem 1. Edit the PATHs below to match your system paths for Java JDK and APACHE-TOMCAT server installation folders
-@rem 2. If you're using your own version of the dependencies, edit out the jar paths to reflect your own files.
-
-@rem ~~~~~~ -newline script below ~~~~~~
 @echo off
-REM Creating a Newline variable (the two blank lines are required!)
+@rem =================================================================================
+@rem --------- COMPILE.BAT: To Compile the Java Servlets ---------
+@rem Unless required by applicable law or agreed to in writing, software
+@rem distributed under the License is distributed on an "AS IS" BASIS,
+@rem WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+@rem See the License for the specific language governing permissions and
+@rem limitations under the License.
+
+@rem ---------- INSTRUCTIONS: ------------
+@rem 1. Edit the PATHs below to match your system paths for 
+@rem 	Java JDK and APACHE-TOMCAT server installation folders
+@rem 2. If you're using your own version of the dependencies, 
+@rem 	edit out the jar paths to reflect your own files.
+
+@rem ===================================================================================
+
+
+@rem Newline variable created below
 set NLM=^
 
 
