@@ -54,7 +54,7 @@ Description here about the Software......
 
      - In the file `catalina.bat`, search for the line 
        ```sh
-       :noJuliConfig`.
+       :noJuliConfig
        ```
      - Copy the following to the line after `:noJuliConfig`:
        ```sh
