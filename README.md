@@ -16,9 +16,9 @@ Description here about the Software......
 
 - Run `install.bat` to download and fetch all these dependencies (mentioned in setup) 
     - If you wish to use your own version of the above dependencies other than the ones provided in the repository, please:
-            1.  Ensure the .jar files are in the `jars` folder of the Web-App. 
-	    2. Copy the .dll files to the `WEB-INF/bin` folder and the .lib, .pdp files to the `WEB-INF/lib` folder.
-	    3. Reference the .jar files appropriately in the servlet compilation script `[compile.bat]`.
+    	1.  Ensure the .jar files are in the `jars` folder of the Web-App.
+        2. Copy the .dll files to the `WEB-INF/bin` folder and the .lib, .pdp files to the `WEB-INF/lib` folder.
+        3. Reference the .jar files appropriately in the servlet compilation script `[compile.bat]`.
 2. Apache Tomcat Server (or an equivalent hosting server) to deploy the Web-Application.
     - The application has been tested on x64 Windows with Apache Tomcat 8.0.33/36 server.
     - Apache Tomcat server 8.0 or later.
