@@ -44,18 +44,19 @@ Description here about the Software......
     - Extract the `jars.rar` files into `MachineLearningIITKGP/jars` folder, the `lib.rar` and `bin.rar` files each into `MachineLearningIITKGP/WEB-INF/lib` and `MachineLearningIITKGP/WEB-INF/bin` folders respectively.
     - Extract both `jars.rar` and `lib.rar` into `%CATALINA_HOME%/lib` folder of your Apache Tomcat source location.
     
-    - If you wish to use your own version of the above dependencies other than the ones provided in the repository, please:
+    - _If you wish to use your own version of the above dependencies other than the ones provided in the repository, please:_
         1. Ensure the .jar files are extracted to the `WEB-INF/bin` and `%CATALINA_HOME%/lib` folders as in above steps.
         2. Copy the .dll files to the `WEB-INF/bin` folder and the .lib, .pdp files to both `WEB-INF/lib` and `%CATALINA_HOME%/lib` folders.
         3. Edit the servlet compilation script `compile.bat` and reference the .jar files appropriately.
         
     
 4.  **Edit the `%CATALINA_HOME%/bin/catalina.bat` file as follows:**
+
      - In the file `catalina.bat`, search for the line 
        ```sh
        :noJuliConfig`.
        ```
-     - Add the following to the line after `:noJuliConfig`:
+     - Copy the following to the line after `:noJuliConfig`:
        ```sh
        set "JAVA_OPTS=%JAVA_OPTS% %LOGGING_CONFIG%"
        set JAVA_OPTS="-Djava.library.path=%CATALINA_HOME%\webapps\MachineLearningIITKGP\WEB-INF\lib;%CATALINA_HOME%\webapps\MachineLearningIITKGP\WEB-INF\bin;%CATALINA_HOME%\webapps\MachineLearningIITKGP\jars;"
@@ -69,10 +70,11 @@ Description here about the Software......
 
 
 5. **Open your command prompt and execute:**
+
    ```sh
    %CATALINA_HOME%/bin/startup
    ```
-   [Run `http://localhost:8080/docs/` in your browser to check if the server is running correctly.]
+    [Run `http://localhost:8080/docs/` in your browser to check if the server is running correctly.]
    
     If the above test doesn't work, check your firewall and create an exception. Alternatively, you could change the default server port   number as follows:
       - Goto tomcat>conf folder
@@ -81,14 +83,14 @@ Description here about the Software......
       - Replace "8080" by your port number
       - Restart tomcat server.
 
-6. **Open `http://localhost:[portno]/MachineLearningIITKGP` in your browser.** (By default, portno is 8080)
+6. **Run `http://localhost:[portno]/MachineLearningIITKGP` in your browser.** (By default, portno is 8080)
 
 ## Servlet Compilation
 
  Shutdown the server if running by running this in your command prompt:
-```sh
-%CATALINA_HOME%/bin/shutdown
-```
+ ```sh
+ %CATALINA_HOME%/bin/shutdown
+ ```
  - Ensure ```compile.bat``` has the correct paths for the ENV variables and the .jar dependencies.
 
  - Run the ```compile.bat``` file. This will compile both the ```WEB-INF/classes/ExecuteServlet.java``` and ```WEB-INF/classes/getImagesServlet.java``` servlets.
