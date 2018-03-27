@@ -49,20 +49,20 @@ Description here about the Software......
     
 4. Open your command prompt and execute:
 ```sh
-%CATALINA_HOME%/bin/startup.sh 
+%CATALINA_HOME%/bin/startup
 ```
 
 ## Servlet Compilation
 
  Shutdown the server if running by running this in your command prompt:
 ```sh
-%CATALINA_HOME%/bin/shutdown.sh
+%CATALINA_HOME%/bin/shutdown
 ```
  - Ensure ```compile.bat``` has the correct paths for the ENV variables and the .jar dependencies.
 
  - Run the ```compile.bat``` file. This will compile both the ```WEB-INF/classes/ExecuteServlet.java``` and ```WEB-INF/classes/getImagesServlet.java``` servlets.
 
-Proceed to restart the server with ```%CATALINA_HOME%/bin/startup.sh```.
+Proceed to restart the server with ```%CATALINA_HOME%/bin/startup```.
 
 ### Machine Learning Models
 
