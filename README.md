@@ -28,18 +28,18 @@ Description here about the Software......
 
 1. Ensure Java JDK/JRE is installed,`JAVA_HOME` env variable is set. 
 
-   Install Apache Tomcat.
+   **Install Apache Tomcat.**
     -   Download and Install Apache Tomcat ver 8 or later (http://tomcat.apache.org/)
     -   On Apache Tomcat, check if `%CATALINA_HOME%` env var is set to source path of Apache Tomcat server installation [ like `C:\apache-tomcat-8.0.36`]
     
-2. Clone the repository inside your Apache Tomcat's webapps folder (`%CATALINA_HOME%/webapps/`) using:
+2. **Clone the repository inside your Apache Tomcat's webapps folder** (`%CATALINA_HOME%/webapps/`) using:
    ```sh
    cd %CATALINA_HOME%/webapps/
    git clone https://github.com/soilad/MachineLearningIITKGP.git
    ```
    Ensure the application folder `/MachineLearningIITKGP` is in the webapps folder of your Apache Tomcat server installation. (Or equivalently to your local server manager's deployment folder)
 
-3. Run `install.bat`
+3. **Run `install.bat`**
     - Extract the jars.rar files into `/jars` folder, the lib.rar and bin.rar files into `WEB-INF/lib` and `WEB-INF/bin` folders.
     - If you wish to use your own version of the above dependencies other than the ones provided in the repository, please:
         1. Ensure the .jar files are in the `jars` folder of the Web-App.
@@ -47,7 +47,7 @@ Description here about the Software......
         3. Reference the .jar files appropriately in the servlet compilation script `[compile.bat]`.
         
     
-4. Open your command prompt and execute:
+4. **Open your command prompt and execute:**
    ```sh
    %CATALINA_HOME%/bin/startup
    ```
@@ -59,7 +59,7 @@ Description here about the Software......
       - Replace "8080" by your port number
       - Restart tomcat server.
 
-5. Now open `http://localhost:[portno]/MachineLearningIITKGP` in your browser. (By default, portno is 8080)
+5. **Open `http://localhost:[portno]/MachineLearningIITKGP` in your browser.** (By default, portno is 8080)
 
 ## Servlet Compilation
 
