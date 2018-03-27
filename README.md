@@ -6,15 +6,8 @@ Description here about the Software......
  > [To be added later]
 
 ## Dependencies:
-1. For compilation and execution of the Java Servlets, the following dependencies are necessary:
-    - DeepLearning4Java (SNAPSHOT-bin.jar version >= 0.4-rc0)
-    - ND4J and CANOVA jars
-    - JavaML (>=0.1.7) jar
-    - OpenCV (.jar, .lib, .pdp and .dll files)
-    - Weka
-    - nio.jar, ajt-2.9.jar, servlet-api.jar, commons-io-2.5.jar
 
-- Run `install.bat` to download and fetch all these dependencies (mentioned in setup) 
+1. Run `install.bat` to download and fetch all these dependencies (mentioned in setup) 
     - If you wish to use your own version of the above dependencies other than the ones provided in the repository, please:
     	1.  Ensure the .jar files are in the `jars` folder of the Web-App.
         2. Copy the .dll files to the `WEB-INF/bin` folder and the .lib, .pdp files to the `WEB-INF/lib` folder.
@@ -23,6 +16,14 @@ Description here about the Software......
     - The application has been tested on x64 Windows with Apache Tomcat 8.0.33/36 server.
     - Apache Tomcat server 8.0 or later.
 3. Java Development Kit (JDK) / Java SE Runtime Environment (JRE) version 7 or better
+---
+For compilation and execution of the Java Servlets, the following dependencies will be used (available through `install.bat`) :
+ - DeepLearning4Java (SNAPSHOT-bin.jar version >= 0.4-rc0)
+ - ND4J and CANOVA jars
+ - JavaML (>=0.1.7) jar
+ - OpenCV (.jar, .lib, .pdp and .dll files)
+ - Weka
+ - nio.jar, ajt-2.9.jar, servlet-api.jar, commons-io-2.5.jar
 
 ## Installation
 
