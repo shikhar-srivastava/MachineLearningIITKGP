@@ -74,6 +74,7 @@ Description here about the Software......
    ```sh
    %CATALINA_HOME%/bin/startup
    ```
+    This will start the server.
     [Run `http://localhost:8080/docs/` in your browser to check if the server is running correctly.]
    
     If the above test doesn't work, check your firewall and create an exception. Alternatively, you could change the default server port   number as follows:
