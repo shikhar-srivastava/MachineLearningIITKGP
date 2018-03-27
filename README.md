@@ -39,19 +39,27 @@ Description here about the Software......
    ```
    Ensure the application folder `/MachineLearningIITKGP` is in the webapps folder of your Apache Tomcat server installation. (Or equivalently to your local server manager's deployment folder)
 
-3. **Run `install.bat`**
+3. **Run `install.bat` from the repository.**
     - Extract the jars.rar files into `/jars` folder, the lib.rar and bin.rar files into `WEB-INF/lib` and `WEB-INF/bin` folders.
     - If you wish to use your own version of the above dependencies other than the ones provided in the repository, please:
         1. Ensure the .jar files are in the `jars` folder of the Web-App.
         2. Copy the .dll files to the `WEB-INF/bin` folder and the .lib, .pdp files to the `WEB-INF/lib` folder.
-        3. Reference the .jar files appropriately in the servlet compilation script `[compile.bat]`.
+        3. Edit the servlet compilation script `compile.bat` and reference the .jar files appropriately.
         
     
-4. **Open your command prompt and execute:**
+4. 
+```sh
+set JAVA_OPTS="-Djava.library.path=C:\%CATALINA_HOME%\webapps\MachineLearningIITKGP\WEB-INF\lib;%CATALINA_HOME%\webapps\MachineLearningIITKGP\WEB-
+
+INF\bin;%CATALINA_HOME%\webapps\MachineLearningIITKGP\jars;"
+```
+
+**Open your command prompt and execute:**
    ```sh
    %CATALINA_HOME%/bin/startup
    ```
    [Run `http://localhost:8080/docs/` in your browser to check if the server is running correctly.]
+   
    If the above test doesn't work, check your firewall and create an exception. Alternatively, you could change the default server port   number as follows:
       - Goto tomcat>conf folder
       - Edit server.xml
