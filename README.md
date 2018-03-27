@@ -48,9 +48,18 @@ Description here about the Software......
         
     
 4. Open your command prompt and execute:
-```sh
-%CATALINA_HOME%/bin/startup
-```
+   ```sh
+   %CATALINA_HOME%/bin/startup
+   ```
+   [Run `http://localhost:8080/docs/` in your browser to check if the server is running correctly.]
+   If the above test doesn't work, check your firewall and create an exception. Alternatively, you could change the default server port   number as follows:
+      - Goto tomcat>conf folder
+      - Edit server.xml
+      - Search "Connector port"
+      - Replace "8080" by your port number
+      - Restart tomcat server.
+
+5. Now open `http://localhost:[portno]/MachineLearningIITKGP` in your browser. (By default, portno is 8080)
 
 ## Servlet Compilation
 
