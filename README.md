@@ -88,7 +88,7 @@ Description here about the Software......
 
 ## Servlet Compilation
 
- Shutdown the server if running by running this in your command prompt:
+ Shutdown the server if running by executing this in your command prompt:
  ```sh
  %CATALINA_HOME%/bin/shutdown
  ```
