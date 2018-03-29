@@ -23,6 +23,9 @@
         <servlet-name>getImagesServlet</servlet-name>
         <url-pattern>/getImages</url-pattern>
     </servlet-mapping>
+	
+	<!-- Using CATALINA_HOME env variable to set the upload.path -->
+	
      <context-param>
         <param-name>upload.location</param-name>
         <param-value>${catalina_home}/webapps/MachineLearningIITKGP/uploads/</param-value>
