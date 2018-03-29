@@ -72,14 +72,14 @@
 
 		(2.5.2) Copy the following to the line after ":noJuliConfig" :
 
-				set "JAVA_OPTS=%JAVA_OPTS% %LOGGING_CONFIG%"
 				set JAVA_OPTS="-Djava.library.path=%CATALINA_HOME%\webapps\MachineLearningIITKGP\WEB-INF\lib;%CATALINA_HOME%\webapps\MachineLearningIITKGP\WEB-INF\bin;%CATALINA_HOME%\webapps\MachineLearningIITKGP\jars;"
+				set "JAVA_OPTS=%JAVA_OPTS% %LOGGING_CONFIG% -Dcatalina_home=%CATALINA_HOME%"
 
 		(2.5.3) The file should now look like:
 
 				:noJuliConfig
-				set "JAVA_OPTS=%JAVA_OPTS% %LOGGING_CONFIG%"
 				set JAVA_OPTS="-Djava.library.path=%CATALINA_HOME%\webapps\MachineLearningIITKGP\WEB-INF\lib;%CATALINA_HOME%\webapps\MachineLearningIITKGP\WEB-INF\bin;%CATALINA_HOME%\webapps\MachineLearningIITKGP\jars;"
+				set "JAVA_OPTS=%JAVA_OPTS% %LOGGING_CONFIG% -Dcatalina_home=%CATALINA_HOME%"
 
 	(2.6) Open your command prompt and execute:
 
