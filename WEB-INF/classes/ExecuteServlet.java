@@ -112,48 +112,78 @@ public class ExecuteServlet extends HttpServlet {
 
                 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Reading Uploaded Image~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-                Mat inputImg = Highgui.imread(fullpath + pathname, Highgui.CV_LOAD_IMAGE_COLOR);
-                System.out.println("Sample Pixel vals: " + inputImg.get(0, 0)[0]);
+                Mat og_inputImg = Highgui.imread(fullpath + pathname, Highgui.CV_LOAD_IMAGE_COLOR);
+                System.out.println("Sample Pixel vals: " + og_inputImg.get(0, 0)[0]);
 
                 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Image Pre-Processing Begins~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
                 //~~~~~~~~~~~~~~~~~~~~~~ Grey world normalization~~~~~~~~~~~~~~
-                inputImg= GNormImg(inputImg);
+                Mat inputImg= GNormImg(og_inputImg);
+                Imgproc.cvtColor(inputImg, inputImg, Imgproc.COLOR_BGR2RGB);
                 //~~~~~~~~~~~~~~~~~~~~~~ BiLateral Filtering~~~~~~~~~~~~~~~~~~~
                 int height = inputImg.rows();
                 int width =  inputImg.cols();
                 Mat inputImg_temp = new Mat();
-                Imgproc.bilateralFilter(inputImg,inputImg_temp,max(height,width)/100,40.0,max(height,width)/20);
-                // ~~~~~~~~~~~~~~~~~~~~~~Adaptive Thresholding, Canny edge detection, Dilation & medianBluring~~~~~~~~~~~~~~~~~~~~~~
+
+                Imgproc.bilateralFilter(inputImg,inputImg_temp,(max(height,width))/100,40.0,(max(height,width))/20);
+                // ~~~~~~~~~~~~~~~~~~~~~~Adaptive Thresholding, Canny edge detection, Dilation & medianBlurring~~~~~~~~~~~~~~~~~~~~~~
                 Mat thresholded = new Mat();
-                int win= (int)((double)(((height+width)/2))/20.0);
-                win = 2*((win/2))+1;
+                int win= (int)(((float)(((height+width)/2)))/20.0);
+                win = 2*((int)(win/2))+1;
 
                 Vector<Mat> rgb_planes = new Vector<>();
                 Core.split(inputImg_temp, rgb_planes);
 
                 Imgproc.adaptiveThreshold(rgb_planes.get(2),thresholded,255,Imgproc.ADAPTIVE_THRESH_GAUSSIAN_C,Imgproc.THRESH_BINARY_INV,win,1);
+                threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_thresh_adap" + name.substring(name.indexOf('.'));
+                Highgui.imwrite(fullpath + threshFilename, thresholded);
+                System.out.println("After adaptivethresholding, Thresholded Image Saved. At: " + fullpath + threshFilename);
+
                 Mat edges= new Mat();
-                Mat element= new Mat();
+                Mat element;
                 Imgproc.Canny(rgb_planes.get(2),edges,5,50);
-                Imgproc.getStructuringElement(Imgproc.MORPH_CROSS,new Size(2,2));
+
+                threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_edges" + name.substring(name.indexOf('.'));
+                Highgui.imwrite(fullpath + threshFilename, edges);
+                System.out.println("After CannyEdge, Edges Image Saved. At: " + fullpath + threshFilename);
+
+                element = Imgproc.getStructuringElement(Imgproc.MORPH_CROSS, new Size(2,2),new Point(-1,-1));
                 Imgproc.dilate(edges,edges,element);
-                Core.multiply(edges, Scalar.all(255), edges);
+
+                threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_edges_dilated" + name.substring(name.indexOf('.'));
+                Highgui.imwrite(fullpath + threshFilename, edges);
+
+                Core.multiply(edges, Scalar.all(255),edges);
+
+                threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_edges_dilated_scaled" + name.substring(name.indexOf('.'));
+                Highgui.imwrite(fullpath + threshFilename, edges);
+
                 Core.subtract(thresholded,edges,thresholded);
 
+                threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_thresh_subtract" + name.substring(name.indexOf('.'));
+                Highgui.imwrite(fullpath + threshFilename, thresholded);
+                System.out.println("After subtraction Image Saved. At: " + fullpath + threshFilename);
+
+                Imgproc.erode(thresholded,thresholded,element);
+
+                threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_thresh_erosion" + name.substring(name.indexOf('.'));
+                Highgui.imwrite(fullpath + threshFilename, thresholded);
+                System.out.println("After Erosion Image Saved. At: " + fullpath + threshFilename);
                 int winM = 2 * ( (width/300)) + 1;
                 Imgproc.medianBlur(thresholded,thresholded,winM);
+
+                threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_thresh_mblur" + name.substring(name.indexOf('.'));
+                Highgui.imwrite(fullpath + threshFilename, thresholded);
+                System.out.println("AFter Median Blurring Image Saved. At: " + fullpath + threshFilename);
 
                 // ------------------------------------------- Image Processing ends here -----------------------------------
 
                 whiteNormalFilename = "output/" + name.substring(0, name.indexOf('.')) + "_whiteNormal" + name.substring(name.indexOf('.'));
                 Highgui.imwrite(fullpath + whiteNormalFilename, inputImg);
                 System.out.println("White Normalized Image Saved. At: " + fullpath + whiteNormalFilename);
-
                 threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_thresh" + name.substring(name.indexOf('.'));
                 Highgui.imwrite(fullpath + threshFilename, thresholded);
                 System.out.println("Thresholded Image Saved. At: " + fullpath + threshFilename);
-
                 outputFilename = "output/" + name.substring(0, name.indexOf('.')) + "_out_" + mType + name.substring(name.indexOf('.'));
                 Mat finalOutputImg = new Mat(2 * inputImg.rows() + inputImg.rows() / 100, inputImg.cols(), inputImg.type());
                 System.out.println("Creating new outputImg");
@@ -190,7 +220,7 @@ public class ExecuteServlet extends HttpServlet {
                     //finalOutputImg.rowRange(0,inputImg.rows()-1).colRange(0,inputImg.cols()-1)=inputImg;
                     //finalOutputImg.rowRange(inputImg.rows(),2*inputImg.rows()-1).colRange(0,inputImg.cols()-1)=tempOutputImg;
 
-                    Core.vconcat(Arrays.asList(inputImg, filler), outFiller);
+                    Core.vconcat(Arrays.asList(og_inputImg, filler), outFiller);
                     Core.vconcat(Arrays.asList(outFiller, tempOutputImg), finalOutputImg);
 
                     System.out.println("Mapping to Final Output");
@@ -242,7 +272,7 @@ public class ExecuteServlet extends HttpServlet {
                     }
                     System.out.println("Output Image Created..");
 
-                    Core.vconcat(Arrays.asList(inputImg, filler), outFiller);
+                    Core.vconcat(Arrays.asList(og_inputImg, filler), outFiller);
                     Core.vconcat(Arrays.asList(outFiller, tempOutputImg), finalOutputImg);
 
                     System.out.println("Mapping to Final Output");
@@ -278,25 +308,35 @@ public class ExecuteServlet extends HttpServlet {
     }
 
     public Mat GNormImg(Mat Img) {
-
+        System.out.println("Default Image Depth: "+Img.depth());
         Mat ImgGr = new Mat();
         Imgproc.cvtColor(Img, ImgGr, Imgproc.COLOR_BGR2GRAY);
         Vector<Mat> rgb_planes = new Vector<>();
-        Core.split(ImgGr, rgb_planes);
-        MatOfDouble B = new MatOfDouble(rgb_planes.get(0));
-        MatOfDouble G = new MatOfDouble(rgb_planes.get(1));
-        MatOfDouble R = new MatOfDouble(rgb_planes.get(2));
-        MatOfDouble Gr = new MatOfDouble(ImgGr);
+        Core.split(Img, rgb_planes);
+        Mat B,G,R,Gr;
+        B = new Mat();
+        G = new Mat();
+        R = new Mat();
+        Gr= new Mat();
+        rgb_planes.get(0).convertTo(B,CvType.CV_32F);
+        rgb_planes.get(1).convertTo(G,CvType.CV_32F);
+        rgb_planes.get(2).convertTo(R,CvType.CV_32F);
+        ImgGr.convertTo(Gr,CvType.CV_32F);
+
         double M_B = (double) mean(B).val[0];
         double M_G = (double) mean(G).val[0];
         double M_R = (double) mean(R).val[0];
         double M_Gr = (double) mean(Gr).val[0];
-        Core.multiply(B, Scalar.all(M_Gr / M_B), B);
-        Core.multiply(G, Scalar.all(M_Gr / M_G), G);
-        Core.multiply(R, Scalar.all(M_Gr / M_R), R);
-        Mat B_ = (Mat) B;
-        Mat G_ = (Mat) G;
-        Mat R_ = (Mat) R;
+        Core.multiply(B, Scalar.all((M_Gr / M_B)), B);
+        Core.multiply(G, Scalar.all((M_Gr / M_G)), G);
+        Core.multiply(R, Scalar.all((M_Gr / M_R)), R);
+        Mat B_ =  new Mat();
+        Mat G_ = new Mat();
+        Mat R_ = new Mat();
+        B.convertTo(B_,CvType.CV_8U);
+        G.convertTo(G_,CvType.CV_8U);
+        R.convertTo(R_,CvType.CV_8U);
+
         Vector<Mat> merge = new Vector<>();
         merge.add(0, B_);
         merge.add(1, G_);
