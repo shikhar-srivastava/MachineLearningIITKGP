@@ -19,6 +19,9 @@
     "Random Forest"             =   rff
     "Random Tree"               =   rnt
 
+    Class 1 : Color Blue pixel
+    Class 2 : Color Red pixel
+
  */
 
 import net.sf.javaml.classification.Classifier;
@@ -291,8 +294,8 @@ public class ExecuteServlet extends HttpServlet {
                                 }
                                 max_class++;
                                 if (max_class == 1) {
-                                    tempOutputImg.put(i, j, new double[]{0, 0, 255});  classCount_1++;
-                                } else {tempOutputImg.put(i, j, new double[]{255, 0, 0}); classCount_2++;}
+                                    tempOutputImg.put(i, j, new double[]{255, 0, 0});  classCount_1++;
+                                } else {tempOutputImg.put(i, j, new double[]{0, 0, 255}); classCount_2++;}
 
                             } else tempOutputImg.put(i, j, inputImg.get(i, j));
 

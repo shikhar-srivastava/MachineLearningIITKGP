@@ -14,7 +14,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 .idea*
-output.*
+output/*
+output\*
 *.iml
 
 
