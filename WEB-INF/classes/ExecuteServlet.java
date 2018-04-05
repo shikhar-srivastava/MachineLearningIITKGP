@@ -38,11 +38,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Vector;
-
-import static java.lang.Math.max;
 import static org.opencv.core.Core.mean;
 
 public class ExecuteServlet extends HttpServlet {
@@ -96,7 +97,7 @@ public class ExecuteServlet extends HttpServlet {
             System.out.println("Image(s) selected: ");
             String pathname, threshFilename, outputFilename, whiteNormalFilename;
             PrintWriter out = response.getWriter();
-            String docstart = "<!DOCTYPE html><html lang=\"en\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1.0\"/><meta name=\"theme-color\" content=\"#5e42a6\"><title>ML for BMI</title><link rel=\"icon\" type=\"icon/ico\" href=\"rsc/icon.ico\"/><link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\"><link href=\"css\\materialize.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\"/><link href=\"css\\style.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\"/><link href=\"css\\dropify.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\"/><link href=\"css\\imgcenter.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\"/></head><body><div class=\"navbar-fixed\"><nav class=\"blue darken-3\" role=\"navigation\"><div class=\"row\"><div class=\"nav-wrapper container col s12\"><div class=\"nav-wrapper container col s12\"><a id=\"logo-container\" href=\"index.html\" class=\"brand-logo\"><i class=\"material-icons \" style=\"font-size: 35px\">polymer</i></a></div></div></div></nav></div><div class=\"parallax-container valign-wrapper hero \"><div class=\"container\"><div class=\"row center\"><h5 class=\"header col s12 light\"><br><br>Classification Result: " + modelName + " <br><br><br></h5></div>";
+            String docstart = "<!DOCTYPE html><html lang=\"en\"><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1.0\"/><meta name=\"theme-color\" content=\"#5e42a6\"><title>ML for BMI</title><link rel=\"icon\" type=\"icon/ico\" href=\"rsc/icon.ico\"/><link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\"><link href=\"css\\materialize.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\"/><link href=\"css\\style.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\"/><link href=\"css\\dropify.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\"/><link href=\"css\\imgcenter.css\" type=\"text/css\" rel=\"stylesheet\" media=\"screen,projection\"/></head><body><div class=\"navbar-fixed\"><nav class=\"blue darken-3\" role=\"navigation\"><div class=\"row\"><div class=\"nav-wrapper container col s12\"><div class=\"nav-wrapper container col s12\"><a id=\"logo-container\" href=\"index.html\" class=\"brand-logo\"><i class=\"material-icons \" style=\"font-size: 35px\">polymer</i></a></div></div></div></nav></div><div class=\"parallax-container valign-wrapper hero \"><div class=\"container\"><div class=\"row center\"><h5 class=\"header col s12 light\"><br><br>Classification Result: " + modelName + " <br></h5></div>";
             String docend = "<div class=\"parallax\"><img src=\"rsc/lawn.jpg\" alt=\"rsc/lawn.jpg\"></div></div></div><div class=\"section z-depth-5 white  darken-3\"><div class=\"container\"><div class=\"row\"><div class=\"col s12 m12\"><div class=\"icon-block\"><h5 class=\"center light\">ML for BMI</h5><h2 class=\"center light-blue-text\"><a href=\"index.html\" ><i class=\"material-icons indigo-text\" style=\"font-size: 90px\">polymer</i></a></h2><h5 class=\"light\" align='center'>Using <b>Machine Learning</b> to solve Bio-Medical Imaging problems<br></h5></div></div></div></div></div><div class=\"parallax-container valign-wrapper\"><div class=\"container\"><h5 class=\"light\" align=\"center\"><br><br>Close this <b>page</b> to try other models </h5></div><div class=\"parallax\"><img src=\"rsc/lawn.jpg\" alt=\"Unsplashed background img 2\"></div></div><footer class=\"page-footer red darken-1\"><div class=\"container\"><div class=\"row center\"><div class=\"col s12\"><a id=\"logo-container\" href=\"index.html\" class=\"brand-logo\"><img src=\"rsc/logo_small.png\" width=\"100\"></a><h5 class=\"white-text\">Machine Learning for Bio Medical Imaging</h5><p class=\"grey-text text-lighten-4\">Using Machine Learning models to solve problems in BioMedical Imaging</p></div></div></div><div class=\"footer-copyright\"><div class=\"container\"><a class=\"red-text text-lighten-3\" href=\"#!\">BioMedical Imaging Informatics, SMST</a> @IITKGP 2016</div></div></footer></body><script src=\"js/jquery-2.2.2.min.js\"></script><script src=\"js/materialize.js\"></script><script src=\"js/init.js\"></script><script src=\"js/dropify.js\"></script><script>$(document).ready(function() {$('.parallax').parallax();});</script><script>!function(n,r){\"function\"==typeof define&&define.amd?define(r):\"object\"==typeof exports?module.exports=r():n.transformicons=r()}(this||window,function(){\"use strict\";var n={},r=\"tcon-transform\",t={transform:[\"click\"],revert:[\"click\"]},e=function(n){return\"string\"==typeof n?Array.prototype.slice.call(document.querySelectorAll(n)):\"undefined\"==typeof n||n instanceof Array?n:[n]},o=function(n){return\"string\"==typeof n?n.toLowerCase().split(\" \"):n},f=function(n,r,f){var c=(f?\"remove\":\"add\")+\"EventListener\",u=e(n),s=u.length,a={};for(var l in t)a[l]=r&&r[l]?o(r[l]):t[l];for(;s--;)for(var d in a)for(var v=a[d].length;v--;)u[s][c](a[d][v],i)},i=function(r){n.toggle(r.currentTarget)};return n.add=function(r,t){return f(r,t),n},n.remove=function(r,t){return f(r,t,!0),n},n.transform=function(t){return e(t).forEach(function(n){n.classList.add(r)}),n},n.revert=function(t){return e(t).forEach(function(n){n.classList.remove(r)}),n},n.toggle=function(t){return e(t).forEach(function(t){n[t.classList.contains(r)?\"revert\":\"transform\"](t)}),n},n});</script></html>";
             //Creating Document
 
@@ -117,79 +118,101 @@ public class ExecuteServlet extends HttpServlet {
 
                 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Image Pre-Processing Begins~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
+
                 //~~~~~~~~~~~~~~~~~~~~~~ Grey world normalization~~~~~~~~~~~~~~
-                Mat inputImg= GNormImg(og_inputImg);
+                Mat inputImg= og_inputImg.clone();
+                   inputImg= GNormImg(inputImg);
                 Imgproc.cvtColor(inputImg, inputImg, Imgproc.COLOR_BGR2RGB);
                 //~~~~~~~~~~~~~~~~~~~~~~ BiLateral Filtering~~~~~~~~~~~~~~~~~~~
                 int height = inputImg.rows();
                 int width =  inputImg.cols();
                 Mat inputImg_temp = new Mat();
 
-                Imgproc.bilateralFilter(inputImg,inputImg_temp,(max(height,width))/100,40.0,(max(height,width))/20);
-                // ~~~~~~~~~~~~~~~~~~~~~~Adaptive Thresholding, Canny edge detection, Dilation & medianBlurring~~~~~~~~~~~~~~~~~~~~~~
+                Imgproc.bilateralFilter(inputImg,inputImg_temp,(Math.max(height,width))/100,40.0,(Math.max(height,width))/20);
+                // ~~~~~~~~~~~~~~~~ Adaptive Thresholding, Canny edge detection, Dilation & medianBlurring ~~~~~~~
+
                 Mat thresholded = new Mat();
                 int win= (int)(((float)(((height+width)/2)))/20.0);
                 win = 2*((int)(win/2))+1;
-
                 Vector<Mat> rgb_planes = new Vector<>();
                 Core.split(inputImg_temp, rgb_planes);
-
                 Imgproc.adaptiveThreshold(rgb_planes.get(2),thresholded,255,Imgproc.ADAPTIVE_THRESH_GAUSSIAN_C,Imgproc.THRESH_BINARY_INV,win,1);
-                threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_thresh_adap" + name.substring(name.indexOf('.'));
-                Highgui.imwrite(fullpath + threshFilename, thresholded);
-                System.out.println("After adaptivethresholding, Thresholded Image Saved. At: " + fullpath + threshFilename);
 
-                Mat edges= new Mat();
+                    //threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_thresh_adap" + name.substring(name.indexOf('.'));
+                    //Highgui.imwrite(fullpath + threshFilename, thresholded);
+                    //System.out.println("After adaptivethresholding, Thresholded Image Saved. At: " + fullpath + threshFilename);
+
+                Mat edges = new Mat();
                 Mat element;
                 Imgproc.Canny(rgb_planes.get(2),edges,5,50);
 
-                threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_edges" + name.substring(name.indexOf('.'));
-                Highgui.imwrite(fullpath + threshFilename, edges);
-                System.out.println("After CannyEdge, Edges Image Saved. At: " + fullpath + threshFilename);
+                    //threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_edges" + name.substring(name.indexOf('.'));
+                    //Highgui.imwrite(fullpath + threshFilename, edges);
+                    //System.out.println("After CannyEdge, Edges Image Saved. At: " + fullpath + threshFilename);
 
-                element = Imgproc.getStructuringElement(Imgproc.MORPH_CROSS, new Size(2,2),new Point(-1,-1));
+                element = Imgproc.getStructuringElement(Imgproc.MORPH_CROSS, new Size(2,2));
                 Imgproc.dilate(edges,edges,element);
 
-                threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_edges_dilated" + name.substring(name.indexOf('.'));
-                Highgui.imwrite(fullpath + threshFilename, edges);
+                    //threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_edges_dilated" + name.substring(name.indexOf('.'));
+                    //Highgui.imwrite(fullpath + threshFilename, edges);
 
-                Core.multiply(edges, Scalar.all(255),edges);
-
-                threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_edges_dilated_scaled" + name.substring(name.indexOf('.'));
-                Highgui.imwrite(fullpath + threshFilename, edges);
-
+                //Vector<Mat> edge_planes = new Vector<>();
+                //Core.split(edges, edge_planes);
+                //Core.multiply(edges, Scalar.all(255),edges);
+                edges.convertTo(edges,CvType.CV_32FC1,255);
+                //threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_edges_dilated_scaled" + name.substring(name.indexOf('.'));
+                //Highgui.imwrite(fullpath + threshFilename, edges);
+                thresholded.convertTo(thresholded,CvType.CV_32FC1);
                 Core.subtract(thresholded,edges,thresholded);
+                thresholded.convertTo(thresholded,CvType.CV_8U);
 
-                threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_thresh_subtract" + name.substring(name.indexOf('.'));
-                Highgui.imwrite(fullpath + threshFilename, thresholded);
-                System.out.println("After subtraction Image Saved. At: " + fullpath + threshFilename);
+                    //threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_thresh_subtract" + name.substring(name.indexOf('.'));
+                    //Highgui.imwrite(fullpath + threshFilename, thresholded);
+                    //System.out.println("After subtraction Image Saved. At: " + fullpath + threshFilename);
 
                 Imgproc.erode(thresholded,thresholded,element);
 
-                threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_thresh_erosion" + name.substring(name.indexOf('.'));
-                Highgui.imwrite(fullpath + threshFilename, thresholded);
-                System.out.println("After Erosion Image Saved. At: " + fullpath + threshFilename);
+                    //threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_thresh_erosion" + name.substring(name.indexOf('.'));
+                    //Highgui.imwrite(fullpath + threshFilename, thresholded);
+                    //System.out.println("After Erosion Image Saved. At: " + fullpath + threshFilename);
+
                 int winM = 2 * ( (width/300)) + 1;
                 Imgproc.medianBlur(thresholded,thresholded,winM);
 
-                threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_thresh_mblur" + name.substring(name.indexOf('.'));
-                Highgui.imwrite(fullpath + threshFilename, thresholded);
-                System.out.println("AFter Median Blurring Image Saved. At: " + fullpath + threshFilename);
+                    //threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_thresh_mblur" + name.substring(name.indexOf('.'));
+                    //Highgui.imwrite(fullpath + threshFilename, thresholded);
+                    //System.out.println("AFter Median Blurring Image Saved. At: " + fullpath + threshFilename);
+                   // whiteNormalFilename = "output/" + name.substring(0, name.indexOf('.')) + "_whiteNormal" + name.substring(name.indexOf('.'));
+                   // Highgui.imwrite(fullpath + whiteNormalFilename, inputImg);
+                    //System.out.println("White Normalized Image Saved. At: " + fullpath + whiteNormalFilename);
+                    threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_thresh" + name.substring(name.indexOf('.'));
+                    Highgui.imwrite(fullpath + threshFilename, thresholded);
+                    System.out.println("Thresholded Image Saved. At: " + fullpath + threshFilename);
+                    outputFilename = "output/" + name.substring(0, name.indexOf('.')) + "_out_" + mType + name.substring(name.indexOf('.'));
 
-                // ------------------------------------------- Image Processing ends here -----------------------------------
 
-                whiteNormalFilename = "output/" + name.substring(0, name.indexOf('.')) + "_whiteNormal" + name.substring(name.indexOf('.'));
-                Highgui.imwrite(fullpath + whiteNormalFilename, inputImg);
-                System.out.println("White Normalized Image Saved. At: " + fullpath + whiteNormalFilename);
-                threshFilename = "output/" + name.substring(0, name.indexOf('.')) + "_thresh" + name.substring(name.indexOf('.'));
-                Highgui.imwrite(fullpath + threshFilename, thresholded);
-                System.out.println("Thresholded Image Saved. At: " + fullpath + threshFilename);
-                outputFilename = "output/" + name.substring(0, name.indexOf('.')) + "_out_" + mType + name.substring(name.indexOf('.'));
-                Mat finalOutputImg = new Mat(2 * inputImg.rows() + inputImg.rows() / 100, inputImg.cols(), inputImg.type());
+                // ------------------------------------------- Image Processing ends here ---------------------------------------------------
+
+
+                // --------------- Declaring Output Image Placeholders -----------------
+
                 System.out.println("Creating new outputImg");
+                int paddingHeight = 2;
+                double refHeight = 675;
+                int textHeight= inputImg.rows()/4;
+                double fontScale = (double)(textHeight/(refHeight/4.0));
+                Mat padding= Mat.zeros(paddingHeight, inputImg.cols(), inputImg.type());
+                Mat finalOutputImg = new Mat(2 * inputImg.rows() + 4*paddingHeight + textHeight, inputImg.cols(), inputImg.type());
                 Mat tempOutputImg = new Mat(inputImg.rows(), inputImg.cols(), inputImg.type());
-                Mat filler = Mat.zeros(inputImg.rows() / 100, inputImg.cols(), inputImg.type());
-                Mat outFiller = new Mat(inputImg.rows() + inputImg.rows() / 100, inputImg.cols(), inputImg.type());
+                Mat filler = Mat.zeros(paddingHeight, inputImg.cols(), inputImg.type());
+                Mat textFiller = new Mat(textHeight,inputImg.cols(),inputImg.type());
+                textFiller.setTo(new Scalar(255,255,255));
+                int classCount_1,classCount_2;
+                classCount_1=classCount_2=0;
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                Date dateobj = new Date();
+
 
                 if (mType.equals("nmc") || mType.equals("knn") || mType.equals("nvb") || mType.equals("svm") || mType.equals("sosvm") || mType.equals("rbfsvm") || mType.equals("rff") || mType.equals("rnt")) {
                     System.out.println("Using JavaML Classifier....");
@@ -211,18 +234,24 @@ public class ExecuteServlet extends HttpServlet {
                                 int predicted = Integer.parseInt(model.classify(inst).toString());
                                 if (predicted == 1) {
                                     tempOutputImg.put(i, j, new double[]{255, 0, 0});
-                                } else tempOutputImg.put(i, j, new double[]{0, 0, 255});
+                                    classCount_1++;
+                                } else {tempOutputImg.put(i, j, new double[]{0, 0, 255}); classCount_2++;}
                             } else tempOutputImg.put(i, j, inputImg.get(i, j));
 
                         }
                     }
+
                     System.out.println("Output Image Created..");
-                    //finalOutputImg.rowRange(0,inputImg.rows()-1).colRange(0,inputImg.cols()-1)=inputImg;
-                    //finalOutputImg.rowRange(inputImg.rows(),2*inputImg.rows()-1).colRange(0,inputImg.cols()-1)=tempOutputImg;
 
-                    Core.vconcat(Arrays.asList(og_inputImg, filler), outFiller);
-                    Core.vconcat(Arrays.asList(outFiller, tempOutputImg), finalOutputImg);
+                    int nuclearArea= (int) (100*( (double) classCount_1 / ((double)(classCount_1+classCount_2)) ) );
+                    Core.putText(textFiller,"ImmunoRatio",new Point(5,textHeight/5 - 5.0*fontScale),Core.FONT_HERSHEY_SIMPLEX,fontScale,new Scalar(255,0,0),2);
+                    Core.putText(textFiller,"Sample ID: "+name.substring(0,Math.min((int)(20.0*fontScale),name.length()-1)),new Point(5,2*textHeight/5 - 5*fontScale),Core.FONT_HERSHEY_SIMPLEX,fontScale,new Scalar(0,0,0),2);
+                    Core.putText(textFiller,"Date: "+df.format(dateobj),new Point(5,3*textHeight/5 - 5*fontScale),Core.FONT_HERSHEY_SIMPLEX,fontScale,new Scalar(0,0,0),2);
+                    Core.putText(textFiller,"Model: "+modelName.substring(0, Math.min((int)(20.0*fontScale),modelName.length()-1)),new Point(5,4*textHeight/5 - 5*fontScale),Core.FONT_HERSHEY_SIMPLEX,fontScale,new Scalar(0,0,0),2);
+                    Core.putText(textFiller,"DAB / nuclear area: "+nuclearArea+" %",new Point(5,textHeight - 5*fontScale),Core.FONT_HERSHEY_SIMPLEX,fontScale,new Scalar(0,0,0),2);
 
+
+                    Core.vconcat(Arrays.asList(padding,textFiller,padding,og_inputImg,filler,tempOutputImg,padding),finalOutputImg);
                     System.out.println("Mapping to Final Output");
 
                 } else {
@@ -262,8 +291,8 @@ public class ExecuteServlet extends HttpServlet {
                                 }
                                 max_class++;
                                 if (max_class == 1) {
-                                    tempOutputImg.put(i, j, new double[]{0, 0, 255});
-                                } else tempOutputImg.put(i, j, new double[]{255, 0, 0});
+                                    tempOutputImg.put(i, j, new double[]{0, 0, 255});  classCount_1++;
+                                } else {tempOutputImg.put(i, j, new double[]{255, 0, 0}); classCount_2++;}
 
                             } else tempOutputImg.put(i, j, inputImg.get(i, j));
 
@@ -272,10 +301,15 @@ public class ExecuteServlet extends HttpServlet {
                     }
                     System.out.println("Output Image Created..");
 
-                    Core.vconcat(Arrays.asList(og_inputImg, filler), outFiller);
-                    Core.vconcat(Arrays.asList(outFiller, tempOutputImg), finalOutputImg);
+                    int nuclearArea= (int) (100*( (double) classCount_1 / ((double)(classCount_1+classCount_2)) ) );
+                    Core.putText(textFiller,"ImmunoRatio",new Point(5,textHeight/5 - 5.0*fontScale),Core.FONT_HERSHEY_SIMPLEX,fontScale,new Scalar(255,0,0),2);
+                    Core.putText(textFiller,"Sample ID: "+name.substring(0,Math.min((int)(20.0*fontScale),name.length()-1)),new Point(5,2*textHeight/5 - 5*fontScale),Core.FONT_HERSHEY_SIMPLEX,fontScale,new Scalar(0,0,0),2);
+                    Core.putText(textFiller,"Date: "+df.format(dateobj),new Point(5,3*textHeight/5 - 5*fontScale),Core.FONT_HERSHEY_SIMPLEX,fontScale,new Scalar(0,0,0),2);
+                    Core.putText(textFiller,"Model: "+modelName.substring(0, Math.min((int)(20.0*fontScale),modelName.length()-1)),new Point(5,4*textHeight/5 - 5*fontScale),Core.FONT_HERSHEY_SIMPLEX,fontScale,new Scalar(0,0,0),2);
+                    Core.putText(textFiller,"DAB / nuclear area: "+nuclearArea+" %",new Point(5,textHeight - 5*fontScale),Core.FONT_HERSHEY_SIMPLEX,fontScale,new Scalar(0,0,0),2);
 
-                    System.out.println("Mapping to Final Output");
+
+                    Core.vconcat(Arrays.asList(padding,textFiller,padding,og_inputImg,filler,tempOutputImg,padding),finalOutputImg);
 
                 }
                 //~~~~~~~~~~~~~~~Writing Output Image~~~~~~~~~~~~~~~~~~~
