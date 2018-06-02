@@ -1,11 +1,32 @@
-# Cloud-based IHC Image Analysis using ensemble of Machine Learning Models
+# Framework for Dynamic Access to Machine Learning Models
+#### This Framework provides a web-based GUI access to Dynamic pre-trained Machine learning models, for cloud-based predictions on user-uploaded data, analyzed in **realtime**.
 
-#### Web-based tool to allow online cloud-based analysis of ImmunoHistochemical Images using a selection of various pre-trained Machine Learning & Deep Learning models (Autoencoders, Multi Layer Perceptrons, Support Vector Machines, Random Forests, K-Nearest Neighbors, etc). 
+The aim behind this framework was to create an environment where a user can conveniently utilize the functionality of a Machine learning model, simply by loading and executing a pre-trained model, skipping the inconvenience of preprocessing ,training and fitting it on data.
 
-- _The Deep Learning models were trained using DeepLearning4Java (Java DL Library), the ML models were trained using Scikit-Learn (Python ML Library)._ 
-- _Offers a model-access framework, and wrappers to access the Java and Python ML libraries._
+It allows web-based access to the models, where users can simply choose a model of their liking, and proceed to Upload an Image, or a CSV file to obtain the model's predctions. 
+
+#### The focus was on making access to the models as a plug-and-play system, with a good GUI to accompany it.
+
+#### Functionality:
+
+1. Easy access to pre-trained serialized Deep Learning models such as Autoencoders, MLPs & ML models such as Random Forest, K Nearest Neighbors, Neural Networks and Support Vector Machines over a network/Server.  
+2. The models have been currently trained on Medical Datasets for the purpose of Multiclass Classification problems and are serialized and stored in .model files.
+3. The Framework is built such that the GUI and its functioning is independent of the underlying Machine Learning models and any additions/updates required to the Models in the future can be done by simply replacing the orignal .model files.
+
+#### Implementation:
+- _The framework was mainly coded in Java, with some data-preprocessing done in R and Python for the Model training._
+- _The Deep Learning models were trained using DeepLearning4Java (Java DL Library), the ML models were trained using JavaML and Scikit-Learn._ 
+- _The trained Machine Learning models are stored as .model binary files which are accessed using ObjectInputStreams._ 
 - _Website was developed using JSP Javascript JQuery HTML, and hosted on an Apache Tomcat server._
 - _Documentation is comprehensive. Scripts to automate installation were added_.
+
+The trained Neural Networks are stored as a .json (Network configuration) and .bin (Parameters) in model directory.
+    
+      Front-End : JavaScript, JQuery, HTML, CSS
+      Client-End : Java (Servlets)
+      Back-End : Java ML/Deeplearning 
+    
+      Libaries Used are: JavaML, Deeplearning4j, Weka
 
 [_The tool was developed during a summer internship at SMST, IIT-KGP in 2016 and is maintained to this day._]
 
