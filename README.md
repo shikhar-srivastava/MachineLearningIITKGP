@@ -1,9 +1,12 @@
-# Cloud-based IHC Image Analysis: ML Approach 
+# Cloud-based IHC Image Analysis using ensemble of Machine Learning Models
 
-Description here about the Software......
- > Some more text here about the Software...
- > A little more.
- > [To be added later]
+Web-based tool to allow online cloud-based analysis of ImmunoHistochemical Images using a selection of various pre-trained Machine Learning & Deep Learning models (Autoencoders, Multi Layer Perceptrons, Support Vector Machines, Random Forests, K-Nearest Neighbors, etc). 
+
+ > The Deep Learning models were trained using DeepLearning4Java (Java Library), while the Machine Learning models were trained using Scikit-Learn (Python ML Library). 
+ > The model-access framework was written from scratch, and wrappers to access the Java and Python ML libraries were written.
+ > The website was created using JavaScript, HTML and JSP pages, and hosted on an Apache Tomcat server.
+ > Comprehensive Documentation as well as Scripts to install the software have been added.
+ > [The tool was developed during my Summer internship at SMST, IIT-KGP and is maintained to this day.]
 ---
 ## Dependencies:
 
